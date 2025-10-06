@@ -586,6 +586,9 @@ class external extends external_api {
     public static function get_users() {
         global $DB;
 
+        // We may need a lot of memory here.
+        raise_memory_limit(MEMORY_HUGE);
+
         $systemcontext = \context_system::instance();
         self::validate_context($systemcontext);
         \require_capability('moodle/site:viewparticipants', $systemcontext);
